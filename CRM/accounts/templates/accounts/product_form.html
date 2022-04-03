@@ -1,0 +1,21 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-body" style="height:450px">
+       <h5>Please, create your own car:</h5>
+        <br>
+        <form action="" method="POST" >
+            {% csrf_token %}
+            {{form_car}}
+
+            <input type="submit" name="Submit" class = "btn btn-sm btn-info" value="Save">
+
+        </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

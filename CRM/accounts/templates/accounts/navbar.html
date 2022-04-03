@@ -1,0 +1,41 @@
+{% load static %}
+<style>
+  .welcome-font{
+  font-size: 15px;
+  color: #fff;
+  margin-right: 10px;
+  }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0a4275;">
+  <img src="{% static 'images/LOGO_Volkswagen.png' %}" width="50" height="50">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      {% if request.user.is_staff %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Seller panel</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'create_car' %}">Configure car</a>
+      </li>
+      {% endif %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'products' %}">Price-list</a>
+      </li>
+
+      {% if request.user.is_staff %}
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'user-page' %}">My orders</a>
+      </li>
+      {%endif %}
+
+    </ul>
+  </div>
+  <span class="welcome-font">Hello {{request.user}}, </span>
+  <span><a class="welcome-font" href="{% url 'logout' %}">Logout</a></span>
+</nav>
